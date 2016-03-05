@@ -6,12 +6,10 @@ window.onload=function(){
 	for(var i=0;i<tar.length;i++){
 		tar[i].addEventListener("click", paging);
 	}
-	console.log(222);
 	}
 	function judge(t,j){
 			var Id=t.className.split(" ")[0].slice(4,5);
 			ID=parseInt(Id)+2*j;
-			console.log(ID);
 			if(document.getElementsByClassName("page"+ID)[0]!=null){
 				return 1;
 		}
@@ -21,6 +19,7 @@ window.onload=function(){
 		return document.getElementsByClassName("page"+page)[0];
 	}
 	function paging(){
+		
 		var t=this;
 		var i=0;
 		var j=-1;
@@ -33,12 +32,10 @@ window.onload=function(){
 			var Id=t.className.split(" ")[0].slice(4,5);
 				ID=parseInt(Id);
 				an=90*j;
-				console.log(an);
-				getPage(ID+2*j).classList.add('next');
-				getPage(ID+j).style.transform = 'rotateY('+an+'deg)';
-				getPage(ID+j).classList.add('now');
-				getPage(ID-j).classList.add('next');
+			var time=null;	
 			var time=setInterval(function(){
+				
+				getPage(ID+2*j).classList.add('next');
 			if(i<90&&i>-90){
 				i+=j;
 			t.style.transform="rotateY("+i+"deg)";
@@ -48,20 +45,25 @@ window.onload=function(){
 
 			else if(i<180&&i>=90||i<=-90&&i>-180){
 					i+=j;
-					i2-=j
+					i2-=1;
+					getPage(ID+j).classList.add('now');
+					getPage(ID+j).style.transform = 'rotateY('+an+'deg)';getPage(ID-j).classList.add('next');
+					getPage(ID-j).classList.remove("now");
 				getPage(ID+j).style.transform = "rotateY("+i2+"deg)";
-				var ang=i2/6;
+				var ang=j*i2/6;
 				getPage(ID+j).style.transform+="skewY("+ang+"deg)";
 				}
 				else{
-					t.classList.remove("now");
-					getPage(ID+2*j).classList.remove('next');
+				clearInterval(time);
+				t.classList.remove("now");
+				getPage(ID+j).style.transform = "rotateY(0deg)";
+				getPage(ID-j).style.transform = 'rotateY(0deg)';
+				getPage(ID+2*j).classList.remove('next');
 				getPage(ID+2*j).classList.add('now');
-				getPage(ID-j).classList.remove('next');
+				getPage(ID-j).classList.remove('next');ini();
 				}
 		},10);
 			
 		}
-		ini();
 	}
 	

@@ -131,7 +131,6 @@ header a{
 }
 .now{
 	z-index: 999;
-	transform:rotateY(0deg);
 }
 .next{
 	z-index: 998;
