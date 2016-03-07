@@ -3,13 +3,19 @@ window.onload=function(){
 	}
 	function ini(){
 		var tar=document.getElementsByClassName("now");
-	for(var i=0;i<tar.length;i++){
-		tar[i].addEventListener("click",flipP);
-	}
-	var tags=document.getElementsByClassName('tags')[0].getElementsByTagName('li');
-	for(var i=0;i<tags.length;i++){
-		tags[i].addEventListener("click", flipT);
-	}
+		var tagN=new Array();
+		for(var i=0;i<tar.length;i++){
+			tar[i].addEventListener("click",flipP);
+			tagN.push(tar[i].classList[0]);
+		}
+		var tags=document.getElementsByClassName('tags')[0].getElementsByTagName('li');
+		for(var i=0;i<tags.length;i++){
+			tags[i].addEventListener("click", flipT);
+			tags[i].classList.remove("focus");
+		}
+		var tag=document.getElementById(tagN[0])||document.getElementById(tagN[1]);
+		tag.classList.add("focus");
+		
 	}
 	function getPage(page){
 		return document.getElementsByClassName("page"+page)[0];
@@ -39,7 +45,7 @@ window.onload=function(){
 	function paging(ID,tarP){
 		var i=0;
 		var j=1;
-		
+
 		if(tarP==null){
 			tarP=1;
 		}
@@ -48,7 +54,6 @@ window.onload=function(){
 			j=-1;
 		}
 		tarP=Math.abs(tarP);
-		console.log(j);
 		var i2=Math.abs(90*j);
 		if(getPage(ID+(2*tarP-1)*j)){
 			an=90*j;
@@ -86,6 +91,7 @@ window.onload=function(){
 				getPage(ID+(2*tarP)*j).classList.remove('next');
 				getPage(ID-j).classList.remove("next");
 				}
+				ini();
 		},1);
 			
 		}
