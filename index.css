@@ -64,7 +64,7 @@ header a{
 	right: 0;
 	width: 20px;
 	height: 100%;
-	background: linear-gradient(to right,white,#C5C5C5);
+	background:linear-gradient(to right,white,#A09E9E);
 }
 .right-m{
 	position: relative;
@@ -87,7 +87,7 @@ header a{
 	position: absolute;
 	top:0;
 	left: 0;
-	background: linear-gradient(to right,#C5C5C5,white);
+	background: linear-gradient(to right,#A09E9E,white);
 }
 .tags{
 	float: right;
